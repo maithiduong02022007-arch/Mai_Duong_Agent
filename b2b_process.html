@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightOS - Quy Trình Cơ Hội Bán Hàng B2B Minh An</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        lime: {
+                            glow: '#FFB2CE',
+                            neon: '#F48FB1',
+                            accent: '#EC407A',
+                            pastel: '#FCE4EC',
+                            dark: '#AD1457'
+                        },
+                        obsidian: {
+                            900: '#3D1929',
+                            800: '#4F2136',
+                            700: '#632A44',
+                            card: '#461D30'
+                        },
+                        canvas: '#F9DCE6'
+                    },
+                    boxShadow: {
+                        'neon-lime': '0 10px 28px -4px rgba(236, 64, 122, 0.38), inset 0 2px 3px rgba(255, 255, 255, 0.9)',
+                        'neon-lime-sm': '0 6px 16px -2px rgba(236, 64, 122, 0.32), inset 0 2px 2px rgba(255, 255, 255, 0.9)',
+                        'card-soft': '0 14px 32px -6px rgba(185, 80, 115, 0.16), inset 0 2px 3px rgba(255, 255, 255, 0.95)',
+                        'card-hover': '0 22px 44px -10px rgba(185, 80, 115, 0.25), inset 0 2px 3px rgba(255, 255, 255, 1)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F7D4E0;
+            background-image: 
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0px, rgba(255, 255, 255, 0.22) 14px, rgba(205, 105, 140, 0.05) 14px, rgba(205, 105, 140, 0.05) 28px),
+                radial-gradient(circle at 18% 15%, #FFEBF2 0%, #F6C8D8 48%, #EBAFC5 100%);
+            background-attachment: fixed;
+            color: #4A1E30;
+            overflow-x: hidden;
+        }
+
+        aside {
+            background: linear-gradient(165deg, rgba(244, 194, 212, 0.78) 0%, rgba(232, 172, 195, 0.68) 100%) !important;
+            backdrop-filter: blur(26px) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+            border-radius: 30px !important;
+            margin: 12px 0 12px 12px !important;
+            height: calc(100vh - 24px) !important;
+            box-shadow: 0 20px 45px -10px rgba(165, 65, 100, 0.22), inset 0 2.5px 4px rgba(255, 255, 255, 0.92) !important;
+        }
+
+        header {
+            background: linear-gradient(180deg, rgba(255, 244, 248, 0.82) 0%, rgba(252, 228, 238, 0.72) 100%) !important;
+            backdrop-filter: blur(22px) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.88) !important;
+            border-radius: 26px !important;
+            margin: 12px 16px 0 16px !important;
+            box-shadow: 0 12px 28px -6px rgba(180, 75, 110, 0.14), inset 0 2px 3px rgba(255, 255, 255, 0.95) !important;
+        }
+
+        .bg-white.rounded-3xl {
+            background: linear-gradient(170deg, rgba(255, 250, 252, 0.94) 0%, rgba(253, 236, 243, 0.88) 100%) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
+            box-shadow: 0 14px 32px -6px rgba(180, 75, 110, 0.15), inset 0 2.5px 3px rgba(255, 255, 255, 1), inset 0 -2px 4px rgba(225, 135, 168, 0.14) !important;
+        }
+
+        .bg-\[\#14161A\] {
+            background: linear-gradient(145deg, #682843 0%, #4A192E 55%, #592038 100%) !important;
+            border: 1.5px solid rgba(255, 215, 230, 0.5) !important;
+            box-shadow: 0 18px 40px -8px rgba(115, 30, 65, 0.34), inset 0 2.5px 4px rgba(255, 230, 240, 0.42), inset 0 -3px 6px rgba(35, 6, 18, 0.45) !important;
+        }
+
+        button {
+            border-radius: 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.78);
+            box-shadow: 0 6px 14px -2px rgba(185, 70, 110, 0.22), inset 0 2px 2.5px rgba(255, 255, 255, 0.92), inset 0 -2px 3px rgba(185, 70, 110, 0.16);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.015);
+            box-shadow: 0 10px 20px -3px rgba(216, 55, 110, 0.3), inset 0 2.5px 3px rgba(255, 255, 255, 1);
+        }
+
+        button:active {
+            transform: translateY(1px) scale(0.985);
+        }
+
+        /* Nút sơ đồ động */
+        .node-active { border-color: #F48FB1 !important; background-color: #592038 !important; color: white !important; box-shadow: 0 0 25px rgba(244,143,177,0.5); transform: translateY(-3px); }
+        .node-completed { border-color: #EC407A !important; background-color: #FCE4EC !important; color: #880E4F !important; }
+        .node-warning { border-color: #F59E0B !important; background-color: #FFFBEB !important; }
+        .node-danger { border-color: #EF4444 !important; background-color: #FEF2F2 !important; }
+
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 240, 245, 0.4); }
+        ::-webkit-scrollbar-thumb { background: #F09AB8; border-radius: 9999px; }
+    </style>
+</head>
+<body class="min-h-screen flex text-slate-800 antialiased selection:bg-lime-neon selection:text-black">
+
+    <!-- ============================================================== -->
+    <!-- SIDEBAR BÊN TRÁI ĐỒNG BỘ INSIGHTOS -->
+    <!-- ============================================================== -->
+    <aside class="w-64 bg-white border-r border-[#EAECE6] flex flex-col justify-between p-6 shrink-0 z-40 h-screen sticky top-0">
+        <div class="space-y-8">
+            <!-- LOGO INSIGHTOS -->
+            <div class="flex items-center space-x-3 px-1">
+                <div class="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white text-base shadow-sm">
+                    <i class="fa-solid fa-circle-notch text-lime-glow animate-spin-slow"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-extrabold tracking-tight text-slate-900 flex items-center">
+                        InsightOS
+                        <span class="ml-1.5 px-1.5 py-0.5 rounded text-[9px] font-bold bg-lime-pastel text-slate-900">B2B</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- MENU CHÍNH (MAIN) -->
+            <div>
+                <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-3 mb-2.5">Main</p>
+                <nav class="space-y-1.5">
+                    <!-- Dashboard -->
+                    <a href="/index.html" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition-all text-xs font-semibold">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 flex items-center justify-center text-xs text-slate-500">
+                                <i class="fa-solid fa-house"></i>
+                            </span>
+                            <span>Dashboard</span>
+                        </div>
+                    </a>
+
+                    <!-- Quy Trình B2B (Active) -->
+                    <div class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl bg-[#14161A] text-white shadow-md relative overflow-hidden transition-all duration-300">
+                        <div class="flex items-center space-x-3 z-10">
+                            <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs text-lime-glow">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </span>
+                            <span class="font-semibold text-xs text-white">Quy Trình B2B</span>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-lime-neon shadow-neon-lime-sm z-10"></span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-lime-glow/10 to-lime-glow/20 pointer-events-none"></div>
+                    </div>
+
+                    <!-- Master Catalog & Inventory -->
+                    <button onclick="window.location.href='/index.html'" class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition-all text-xs font-semibold">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 flex items-center justify-center text-xs text-slate-500">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </span>
+                            <span>Kho & Bảng Giá</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400 font-mono">ATP</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100">
+            <a href="/index.html" class="w-full flex items-center space-x-2 text-xs font-bold text-slate-500 hover:text-slate-800 transition py-2 px-1">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Trở về Dashboard</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- KHUNG CHÍNH -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+
+        <!-- TOP BAR -->
+        <header class="px-8 py-5 flex items-center justify-between border-b border-[#EAECE6] bg-white/70 backdrop-blur-md sticky top-0 z-30">
+            <div class="flex items-center space-x-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Minh An Company</span>
+                <span class="text-slate-300">/</span>
+                <span class="text-xs font-extrabold text-slate-800">Quy Trình Xử Lý Cơ Hội Bán Hàng B2B Chuẩn</span>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <a href="/index.html" class="px-3.5 py-2 rounded-2xl bg-white border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-sm flex items-center space-x-1.5">
+                    <i class="fa-solid fa-table-cells text-slate-400"></i>
+                    <span>Sơ đồ 1: CRM Sheets Tự Động Hóa</span>
+                </a>
+                <div class="px-3.5 py-2 rounded-2xl bg-[#14161A] text-white text-xs font-bold border border-white/10 shadow flex items-center space-x-1.5">
+                    <span class="w-2 h-2 rounded-full bg-lime-neon animate-pulse"></span>
+                    <span>Sơ đồ 2: B2B Opportunity Pipeline</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- NỘI DUNG CHÍNH -->
+        <main class="p-8 space-y-7 max-w-[1550px] mx-auto w-full">
+
+            <!-- HEADER KHỐI SƠ ĐỒ ĐỘNG -->
+            <div class="bg-[#14161A] text-white rounded-3xl p-7 relative overflow-hidden shadow-2xl border border-white/5">
+                <div class="absolute -bottom-24 -left-20 w-96 h-96 bg-lime-glow/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-black tracking-tight text-white flex items-center">
+                            QUY TRÌNH XỬ LÝ CƠ HỘI BÁN HÀNG B2B - MINH AN COMPANY
+                            <span class="ml-3 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-lime-neon text-black">
+                                LIVE PIPELINE
+                            </span>
+                        </h2>
+                        <p class="text-xs text-slate-300 mt-1 max-w-2xl font-normal">
+                            Đồng bộ 100% sơ đồ nghiệp vụ: Tiếp nhận $\rightarrow$ Kiểm tra thông tin $\rightarrow$ Vòng lặp làm rõ $\rightarrow$ Tạo Hồ sơ $\rightarrow$ Thẩm định kho giá $\rightarrow$ Duyệt chiết khấu đặc biệt $\rightarrow$ Theo dõi.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <button onclick="pickB2BScenario('invalid_format')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 transition flex items-center space-x-1.5 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            <span>Nhánh 0: Lỗi Định Dạng</span>
+                        </button>
+                        <button onclick="pickB2BScenario('incomplete')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 text-white transition flex items-center space-x-1.5">
+                            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                            <span>Nhánh 1: Thiếu thông tin</span>
+                        </button>
+                        <button onclick="pickB2BScenario('standard')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 text-white transition flex items-center space-x-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            <span>Nhánh 2: Đủ tin (CK 5%)</span>
+                        </button>
+                        <button onclick="pickB2BScenario('override')" class="px-3 py-1.5 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 text-white transition flex items-center space-x-1.5">
+                            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                            <span>Nhánh 3: Cần Duyệt (CK 18%)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 6 BƯỚC CỦA SƠ ĐỒ ĐƯỢC THIẾT KẾ DẠNG THẺ HIỆN ĐẠI -->
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-3 text-xs relative z-10">
+                    <div id="node1" class="border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300">
+                        <div class="w-7 h-7 rounded-full bg-white/10 text-lime-glow font-bold mx-auto mb-2 flex items-center justify-center text-xs">1</div>
+                        <div class="font-extrabold text-white text-xs">Bắt đầu</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">Tiếp nhận yêu cầu</div>
+                    </div>
+
+                    <div id="node2" class="border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300">
+                        <div class="w-7 h-7 rounded-full bg-white/10 text-lime-glow font-bold mx-auto mb-2 flex items-center justify-center text-xs">2</div>
+                        <div class="font-extrabold text-white text-xs">Phân loại</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">Kiểm tra thông tin</div>
+                    </div>
+
+                    <div id="node3" class="border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300">
+                        <div class="w-7 h-7 rounded-full bg-white/10 text-lime-glow font-bold mx-auto mb-2 flex items-center justify-center text-xs">3</div>
+                        <div class="font-extrabold text-white text-xs">Đủ thông tin?</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5" id="node3Sub">Đánh giá tiêu chí</div>
+                    </div>
+
+                    <div id="node4" class="border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300">
+                        <div class="w-7 h-7 rounded-full bg-white/10 text-lime-glow font-bold mx-auto mb-2 flex items-center justify-center text-xs">4</div>
+                        <div class="font-extrabold text-white text-xs">Tạo Hồ Sơ</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">Gắn NVKD & Kho giá</div>
+                    </div>
+
+                    <div id="node5" class="border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300">
+                        <div class="w-7 h-7 rounded-full bg-white/10 text-lime-glow font-bold mx-auto mb-2 flex items-center justify-center text-xs">5</div>
+                        <div class="font-extrabold text-white text-xs">Lập Báo Giá</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">Trưởng phòng duyệt</div>
+                    </div>
+
+                    <div id="node6" class="border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300">
+                        <div class="w-7 h-7 rounded-full bg-white/10 text-lime-glow font-bold mx-auto mb-2 flex items-center justify-center text-xs">6</div>
+                        <div class="font-extrabold text-white text-xs">Kết thúc</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5">Cập nhật & Theo dõi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BỐ CỤC 2 CỘT TƯƠNG TÁC -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                <!-- CỘT TRÁI: FORM ĐIỀU KHIỂN & ĐÁNH GIÁ (5 COLS) -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="bg-white rounded-3xl p-6 shadow-card-soft border border-[#EAECE6] space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-black text-sm text-slate-900 tracking-tight flex items-center">
+                                <i class="fa-solid fa-inbox text-lime-dark mr-2"></i>
+                                Bắt Đầu: Tiếp Nhận Yêu Cầu (Intake Gate)
+                            </h3>
+                            <div class="flex items-center space-x-1.5">
+                                <button onclick="loadStandardTemplateB2B()" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-lime-pastel hover:opacity-80 transition flex items-center space-x-1 text-slate-900 border border-lime-neon">
+                                    <i class="fa-solid fa-file-circle-check"></i>
+                                    <span>Mẫu Chuẩn B2B</span>
+                                </button>
+                                <span id="intakeFormatBadgeB2B" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+                                    Chờ thẩm định
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <textarea id="b2bRawInput" rows="7" oninput="handleB2BIntakeInput(this.value)" class="w-full text-xs font-mono p-3.5 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-lime-neon focus:outline-none bg-[#F9FAF6] transition-all" placeholder="Nhập yêu cầu từ khách hàng hoặc chọn kịch bản phía trên..."></textarea>
+                        </div>
+
+                        <!-- KHUNG THÔNG BÁO BÁO LỖI ĐỊNH DẠNG ĐẦU VÀO -->
+                        <div id="b2bFormatErrorAlert" class="hidden p-3.5 bg-red-50 border-2 border-red-400 rounded-2xl space-y-2 text-xs text-red-900 shadow-sm animate-fade-in">
+                            <div class="flex items-center justify-between font-bold text-red-700">
+                                <span class="flex items-center">
+                                    <i class="fa-solid fa-triangle-exclamation mr-1.5 text-red-600"></i>
+                                    LỖI: YÊU CẦU KHÔNG ĐÚNG ĐỊNH DẠNG
+                                </span>
+                                <button onclick="dismissB2BFormatError()" class="text-slate-400 hover:text-red-700">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <p class="text-[11px] leading-relaxed text-red-800">
+                                Hệ thống từ chối tiếp nhận vì nội dung chưa đạt chuẩn tiếp nhận yêu cầu B2B:
+                            </p>
+                            <ul id="b2bFormatErrorList" class="list-disc pl-4 space-y-1 text-[11px] font-medium text-red-700">
+                                <!-- Danh sách lỗi định dạng -->
+                            </ul>
+                            <div class="pt-1.5 flex items-center space-x-2">
+                                <button onclick="loadStandardTemplateB2B()" class="flex-1 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] rounded-xl shadow transition flex items-center justify-center space-x-1.5">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <span>Nạp Mẫu Chuẩn Để Nộp Lại</span>
+                                </button>
+                                <button onclick="pickB2BScenario('standard')" class="px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-700 font-bold text-[11px] rounded-xl border border-slate-200 transition">
+                                    Mẫu Hợp Lệ
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- TIÊU CHÍ ĐÁNH GIÁ ĐỦ THÔNG TIN -->
+                        <div class="p-4 bg-[#F6F7F2] rounded-2xl border border-slate-200 text-xs space-y-2">
+                            <span class="font-bold text-slate-800 block">Tiêu chí kiểm duyệt tiếp nhận của Minh An:</span>
+                            <div class="grid grid-cols-2 gap-2 text-[11px]">
+                                <label class="flex items-center space-x-1.5 font-medium">
+                                    <input type="checkbox" id="chkItems" checked class="text-lime-dark rounded">
+                                    <span>Rõ mã / số lượng</span>
+                                </label>
+                                <label class="flex items-center space-x-1.5 font-medium">
+                                    <input type="checkbox" id="chkContact" checked class="text-lime-dark rounded">
+                                    <span>Có thông tin liên hệ</span>
+                                </label>
+                                <label class="flex items-center space-x-1.5 font-medium">
+                                    <input type="checkbox" id="chkBudget" checked class="text-lime-dark rounded">
+                                    <span>Rõ khoảng ngân sách</span>
+                                </label>
+                                <label class="flex items-center space-x-1.5 font-medium">
+                                    <input type="checkbox" id="chkDeadline" checked class="text-lime-dark rounded">
+                                    <span>Rõ hạn triển khai</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button onclick="executeB2BWorkflow()" class="w-full py-3.5 bg-[#14161A] hover:bg-black text-white font-extrabold text-xs rounded-2xl shadow-lg transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-play text-lime-glow"></i>
+                            <span>CHẠY TIẾN TRÌNH THEO SƠ ĐỒ B2B</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CỘT PHẢI: KẾT QUẢ VÀ THEO DÕI PIPELINE (7 COLS) -->
+                <div class="lg:col-span-7 space-y-5">
+                    
+                    <!-- KẾT QUẢ ĐÁNH GIÁ (HIỆN RA KHI BẤM CHẠY) -->
+                    <div id="stepInfoCheck" class="bg-white rounded-3xl p-6 shadow-card-soft border border-[#EAECE6] hidden space-y-4">
+                        <div class="flex items-center justify-between border-b pb-3">
+                            <h3 class="font-black text-sm text-slate-900 tracking-tight flex items-center">
+                                <i class="fa-solid fa-microchip text-indigo-600 mr-2"></i>
+                                Kết Quả Phân Loại & Đánh Giá
+                            </h3>
+                            <span id="badgeInfoSufficient" class="text-xs px-3 py-1 rounded-full font-bold"></span>
+                        </div>
+
+                        <!-- NHÁNH: KHÔNG ĐỦ THÔNG TIN -->
+                        <div id="boxIncompleteFlow" class="hidden space-y-3">
+                            <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-900">
+                                <b><i class="fa-solid fa-arrow-turn-up text-amber-600 mr-1.5"></i> RẼ NHÁNH: "KHÔNG" &rarr; YÊU CẦU KH LÀM RÕ / BỔ SUNG</b>
+                                <p class="mt-1">Yêu cầu chưa đủ điều kiện tiếp nhận. AI Agent tự động soạn thư đề nghị khách bổ sung các thông tin còn thiếu.</p>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center text-xs text-slate-500 mb-1.5">
+                                    <span class="font-bold text-slate-800">Email tự động yêu cầu khách làm rõ:</span>
+                                    <button onclick="simulateCustomerReply()" class="text-xs text-blue-700 font-extrabold hover:underline">
+                                        <i class="fa-solid fa-reply mr-1"></i> Giả lập khách hàng bổ sung thông tin
+                                    </button>
+                                </div>
+                                <textarea id="emailClarifyDraft" rows="6" class="w-full text-xs font-sans p-3.5 bg-[#F9FAF6] border border-slate-200 rounded-2xl text-slate-700" readonly></textarea>
+                            </div>
+                        </div>
+
+                        <!-- NHÁNH: ĐỦ THÔNG TIN -->
+                        <div id="boxCompleteFlow" class="hidden space-y-4">
+                            <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between">
+                                <div>
+                                    <b><i class="fa-solid fa-check-double text-emerald-600 mr-1.5"></i> RẼ NHÁNH: "CÓ" &rarr; TẠO HỒ SƠ CƠ HỘI</b>
+                                    <p class="text-[11px] mt-0.5">Đã gán người phụ trách và tiến hành thẩm định kho vận.</p>
+                                </div>
+                                <span class="px-3 py-1 bg-emerald-200 text-emerald-900 font-extrabold rounded-full text-xs" id="oppIdBadge">OPP-2026-089</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 text-xs p-3.5 bg-[#F6F7F2] rounded-2xl border">
+                                <div>
+                                    <span class="text-slate-400 block text-[10px]">Khách hàng Doanh nghiệp:</span>
+                                    <b class="text-slate-900 text-sm" id="oppCustomerName">Công ty ABC</b>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 block text-[10px]">NVKD Phụ Trách:</span>
+                                    <b class="text-blue-700 text-sm" id="oppAssignedRep">Nguyễn Văn Nam (Chuyên viên B2B)</b>
+                                </div>
+                            </div>
+
+                            <!-- BẢNG THẨM ĐỊNH TỒN KHO & GIÁ -->
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-xs">
+                                    <thead class="bg-[#F8F9F4] text-slate-600 font-bold text-[11px]">
+                                        <tr>
+                                            <th class="p-2.5 text-left rounded-l-xl">Hạng mục</th>
+                                            <th class="p-2.5 text-center">SL</th>
+                                            <th class="p-2.5 text-right">Đơn giá</th>
+                                            <th class="p-2.5 text-right">Thành tiền</th>
+                                            <th class="p-2.5 text-center rounded-r-xl">Tồn kho ATP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="b2bItemsTable" class="divide-y divide-slate-100"></tbody>
+                                </table>
+                            </div>
+
+                            <!-- TỔNG TIỀN VÀ TRƯỞNG PHÒNG DUYỆT NẾU VƯỢT THẨM QUYỀN -->
+                            <div class="p-4 rounded-2xl bg-[#F6F7F2] flex items-center justify-between text-xs">
+                                <div>
+                                    <span>Mức chiết khấu: <b id="oppDiscountText" class="text-red-600 font-bold">5%</b></span>
+                                    <div class="text-[10px] text-slate-500" id="oppApprovalHint">Đúng thẩm quyền NVKD</div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-slate-500 block text-[10px]">Tổng giá trị báo giá:</span>
+                                    <b id="oppTotalValue" class="text-lg font-black text-slate-900">0 VNĐ</b>
+                                </div>
+                            </div>
+
+                            <div id="b2bManagerApprovalBox" class="hidden p-4 rounded-2xl bg-purple-50 border border-purple-200 space-y-2.5">
+                                <div class="flex items-center justify-between">
+                                    <b class="text-xs text-purple-900"><i class="fa-solid fa-stamp text-purple-700 mr-1.5"></i> VƯỢT THẨM QUYỀN: TRƯỞNG PHÒNG DUYỆT</b>
+                                    <span class="text-[10px] bg-purple-200 text-purple-900 px-2.5 py-0.5 rounded-full font-bold">CẦN DUYỆT</span>
+                                </div>
+                                <p class="text-xs text-purple-800">
+                                    Mức chiết khấu <span id="spanSpecialDiscount" class="font-bold text-red-600">18%</span> > 10%. Trưởng phòng phê duyệt:
+                                </p>
+                                <div class="flex space-x-2 pt-1">
+                                    <button onclick="managerDecideB2B(true)" class="flex-1 py-2 bg-emerald-600 text-white font-bold rounded-xl text-xs hover:bg-emerald-700 shadow">
+                                        Đồng Ý Phê Duyệt
+                                    </button>
+                                    <button onclick="managerDecideB2B(false)" class="flex-1 py-2 bg-red-600 text-white font-bold rounded-xl text-xs hover:bg-red-700 shadow">
+                                        Từ Chối
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end pt-2">
+                                <button onclick="finishAndTrackB2B()" id="btnFinishB2B" class="px-5 py-2.5 bg-[#14161A] hover:bg-black text-white font-extrabold text-xs rounded-2xl shadow-lg transition flex items-center space-x-2">
+                                    <i class="fa-solid fa-check-to-slot text-lime-glow"></i>
+                                    <span>KẾT THÚC: CẬP NHẬT & THEO DÕI DEAL</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BẢNG CRM PIPELINE THEO DÕI -->
+                    <div class="bg-white rounded-3xl p-6 shadow-card-soft border border-[#EAECE6] space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-black text-sm text-slate-900 tracking-tight flex items-center">
+                                <i class="fa-solid fa-clipboard-list text-slate-700 mr-2"></i>
+                                Theo Dõi Tiến Trình Cơ Hội (CRM Pipeline Stage)
+                            </h3>
+                            <span class="text-xs text-slate-400 font-mono">Minh An B2B Tracking</span>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead>
+                                    <tr class="text-slate-400 border-b text-[11px]">
+                                        <th class="pb-2.5">Mã Cơ Hội</th>
+                                        <th class="pb-2.5">Khách Hàng</th>
+                                        <th class="pb-2.5">NVKD</th>
+                                        <th class="pb-2.5 text-right">Giá Trị</th>
+                                        <th class="pb-2.5 text-center">Trạng Thái</th>
+                                        <th class="pb-2.5 text-center">Lịch Chăm Sóc</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="b2bPipelineTable" class="divide-y divide-slate-100 font-medium">
+                                    <tr>
+                                        <td colspan="6" class="p-6 text-center text-slate-400 italic">
+                                            Chưa có deal nào được cập nhật. Chọn kịch bản và chạy ở trên.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- KHỐI PHÂN TÍCH SƠ ĐỒ HÀNH TRÌNH KHÁCH HÀNG & CÁC ĐIỂM ĐÃ TỐI ƯU HÓA -->
+            <!-- ============================================================== -->
+            <div class="mt-8 bg-white rounded-3xl p-8 shadow-card-soft border border-[#EAECE6] space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-4">
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-100 text-blue-800 uppercase tracking-wider">
+                            End-to-End Customer Journey Map
+                        </span>
+                        <h3 class="text-xl font-black text-slate-900 tracking-tight mt-1">
+                            Sơ Đồ Hành Trình Khách Hàng B2B & Các Điểm Cải Tiến Bổ Sung
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-0.5">
+                            So sánh quy trình gốc của Minh An và các cải tiến đã được bổ sung nhằm bịt kín các kẽ hở vận hành.
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-bold">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px]">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span> Điểm Mới Bổ Sung
+                        </span>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 text-[11px]">
+                            <span class="w-2 h-2 rounded-full bg-purple-500 mr-1.5"></span> Tối Ưu Hóa AI
+                        </span>
+                    </div>
+                </div>
+
+                <!-- BẢN ĐỒ SWIMLANE TƯƠNG TÁC 2 LÀN: KHÁCH HÀNG VS MINH AN TECH -->
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                        1. Phân Làn Trải Nghiệm Tương Tác 2 Chiều (Customer vs Company Flow)
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+                        <!-- Cột 1 -->
+                        <div class="space-y-3">
+                            <div class="p-3 bg-blue-50 border border-blue-200 rounded-2xl">
+                                <span class="text-[10px] font-extrabold text-blue-600 uppercase block">Giai đoạn 1</span>
+                                <b class="text-slate-900 block mt-0.5">Tiếp Nhận & Định Dạng</b>
+                                <div class="mt-2 space-y-1.5 text-[11px] text-slate-600">
+                                    <div class="p-2 bg-white rounded-xl shadow-xs border">
+                                        <b class="text-blue-700">Khách hàng:</b> Nộp yêu cầu chào giá qua Web Form / Email.
+                                    </div>
+                                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-300 text-emerald-900">
+                                        <span class="font-extrabold text-[9px] bg-emerald-200 px-1.5 py-0.5 rounded text-emerald-900 mr-1">MỚI</span>
+                                        <b>Cổng Thẩm Định:</b> Nếu sai định dạng &rarr; Báo lỗi tức thì & Mẫu chuẩn nộp lại.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột 2 -->
+                        <div class="space-y-3">
+                            <div class="p-3 bg-amber-50 border border-amber-200 rounded-2xl">
+                                <span class="text-[10px] font-extrabold text-amber-600 uppercase block">Giai đoạn 2</span>
+                                <b class="text-slate-900 block mt-0.5">Làm Rõ & Xác Nhận</b>
+                                <div class="mt-2 space-y-1.5 text-[11px] text-slate-600">
+                                    <div class="p-2 bg-white rounded-xl shadow-xs border">
+                                        <b class="text-amber-700">Khách hàng:</b> Nhận Email hỏi làm rõ nếu thiếu mã/ngân sách.
+                                    </div>
+                                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-300 text-emerald-900">
+                                        <span class="font-extrabold text-[9px] bg-emerald-200 px-1.5 py-0.5 rounded text-emerald-900 mr-1">MỚI</span>
+                                        <b>SLA & Nhắc lịch:</b> Tự động gửi Ticket ID, hẹn phản hồi 2h, nhắc lịch sau 24h.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột 3 -->
+                        <div class="space-y-3">
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl">
+                                <span class="text-[10px] font-extrabold text-slate-600 uppercase block">Giai đoạn 3</span>
+                                <b class="text-slate-900 block mt-0.5">Thẩm Định & Lập Giá</b>
+                                <div class="mt-2 space-y-1.5 text-[11px] text-slate-600">
+                                    <div class="p-2 bg-purple-50 rounded-xl border border-purple-200 text-purple-900">
+                                        <span class="font-extrabold text-[9px] bg-purple-200 px-1.5 py-0.5 rounded text-purple-900 mr-1">TỐI ƯU</span>
+                                        <b>Hệ thống:</b> AI tự động tra cứu ATP Kho & Bảng giá, tính toán Lead-time khả thi.
+                                    </div>
+                                    <div class="p-2 bg-white rounded-xl shadow-xs border">
+                                        <b>NVKD:</b> Gắn phụ trách, chốt chiết khấu (CK &gt;10% Trưởng phòng duyệt).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột 4 -->
+                        <div class="space-y-3">
+                            <div class="p-3 bg-indigo-50 border border-indigo-200 rounded-2xl">
+                                <span class="text-[10px] font-extrabold text-indigo-600 uppercase block">Giai đoạn 4</span>
+                                <b class="text-slate-900 block mt-0.5">Gửi Báo Giá & Đàm Phán</b>
+                                <div class="mt-2 space-y-1.5 text-[11px] text-slate-600">
+                                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-300 text-emerald-900">
+                                        <span class="font-extrabold text-[9px] bg-emerald-200 px-1.5 py-0.5 rounded text-emerald-900 mr-1">MỚI</span>
+                                        <b>Khách duyệt giá:</b> Xem báo giá Docs chính thức (hiệu lực 15 ngày).
+                                    </div>
+                                    <div class="p-2 bg-white rounded-xl shadow-xs border">
+                                        <b>Phản hồi:</b> Đồng ý (Won) / Đàm phán lại (Negotiate) / Từ chối (Lost).
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột 5 -->
+                        <div class="space-y-3">
+                            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl">
+                                <span class="text-[10px] font-extrabold text-emerald-600 uppercase block">Giai đoạn 5</span>
+                                <b class="text-slate-900 block mt-0.5">Triển Khai & Hậu Mãi</b>
+                                <div class="mt-2 space-y-1.5 text-[11px] text-slate-600">
+                                    <div class="p-2 bg-white rounded-xl shadow-xs border">
+                                        <b>Giao hàng & Lắp đặt:</b> Nghiệm thu theo đúng hạn cam kết ATP.
+                                    </div>
+                                    <div class="p-2 bg-emerald-50 rounded-xl border border-emerald-300 text-emerald-900">
+                                        <span class="font-extrabold text-[9px] bg-emerald-200 px-1.5 py-0.5 rounded text-emerald-900 mr-1">MỚI</span>
+                                        <b>Retention:</b> Đánh giá CSAT & Tự động nhắc lịch bảo trì CNTT định kỳ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BẢNG CHI TIẾT CÁC ĐIỂM SỬA ĐỔI / BỔ SUNG SO VỚI SƠ ĐỒ GỐC -->
+                <div class="space-y-3 pt-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">
+                        2. Bảng Kê Chi Tiết Thiếu Sót Trong Sơ Đồ Gốc Và Phần Đã Được Sửa Đổi
+                    </h4>
+
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-50 text-slate-600 font-bold border-b">
+                                <tr>
+                                    <th class="p-3 w-16 text-center">Bước</th>
+                                    <th class="p-3 w-40">Điểm Nghiệp Vụ</th>
+                                    <th class="p-3 w-64">Thiếu Sót Trong Sơ Đồ Cũ</th>
+                                    <th class="p-3">Giải Pháp Đã Sửa Đổi & Bổ Sung</th>
+                                    <th class="p-3 w-32 text-center">Phân Loại</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Bước 1</td>
+                                    <td class="p-3 font-bold text-slate-800">Tiếp nhận yêu cầu (Intake Gate)</td>
+                                    <td class="p-3 text-slate-500">
+                                        Không kiểm định cấu trúc dữ liệu. Khách gửi tin nhắn rác, thiếu số liên hệ vẫn lọt vào phân loại gây lãng phí công sức.
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-emerald-700">Bổ sung Cổng Thẩm Định Định Dạng:</b> Bắt buộc Email/SĐT hợp lệ, danh mục thiết bị, số lượng. Nếu sai định dạng &rarr; Báo lỗi đỏ lập tức, hướng dẫn nạp biểu mẫu chuẩn B2B 1-click.
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">MỚI BỔ SUNG</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Bước 1.2</td>
+                                    <td class="p-3 font-bold text-slate-800">Xác nhận tiếp nhận (Auto-Ack)</td>
+                                    <td class="p-3 text-slate-500">
+                                        Khách gửi xong không nhận được phản hồi xác nhận, không có mã theo dõi, dễ sốt ruột và chuyển sang đối thủ.
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-blue-700">Tự động cấp Mã Cơ Hội (OPP-xxxx):</b> Gửi phản hồi tiếp nhận tự động trong 30 giây kèm cam kết thời gian phản hồi (SLA: trong 2 giờ làm việc).
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">MỚI BỔ SUNG</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Bước 2 - 3</td>
+                                    <td class="p-3 font-bold text-slate-800">Vòng lặp Yêu cầu làm rõ thông tin</td>
+                                    <td class="p-3 text-slate-500">
+                                        Mũi tên chỉ quay lại Bước 1 chung chung. Không có SLA phản hồi, nếu khách im lặng thì hồ sơ bị "treo" vô hạn định trên CRM.
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-amber-700">Bổ sung AI Draft Email & SLA Timeout:</b> AI tự sinh email mẫu nhắc rõ những điểm cần bổ sung; cài lịch nhắc tự động sau 24h/48h. Quá 7 ngày tự động đóng deal tránh loãng pipeline.
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-200">TỐI ƯU HÓA</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Bước 4</td>
+                                    <td class="p-3 font-bold text-slate-800">Thẩm định tồn kho & bảng giá</td>
+                                    <td class="p-3 text-slate-500">
+                                        NVKD tự tra cứu thủ công, dễ dẫn đến lỗi báo giá cũ và cam kết thời gian giao hàng ảo (hứa 2 ngày nhưng kho hết hàng).
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-slate-900">Tra cứu tự động ATP (Available to Promise):</b> Phân loại rõ hàng sẵn kho (2 ngày) vs hàng cần điều phối kho tổng (7-14 ngày) để chốt lead-time chính xác trên hợp đồng.
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-200">TỐI ƯU HÓA</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Bước 5</td>
+                                    <td class="p-3 font-bold text-slate-800">Phê duyệt chiết khấu đặc biệt</td>
+                                    <td class="p-3 text-slate-500">
+                                        Quy trình sơ khai chỉ ghi "Trưởng phòng duyệt", thiếu phân quyền mức chiết khấu cụ thể.
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-slate-900">Cơ chế chặn cứng &gt; 10%:</b> Chiết khấu &le; 10% do NVKD quyết; nếu &gt; 10% tự động kích hoạt hàng đợi phê duyệt của Trưởng phòng, khóa quyền xuất báo giá chính thức cho đến khi duyệt.
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">NGUYÊN BẢN CẢI TIẾN</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Bước 6</td>
+                                    <td class="p-3 font-bold text-slate-800">Phản hồi Báo giá từ Khách hàng</td>
+                                    <td class="p-3 text-slate-500">
+                                        Sơ đồ cũ nhảy luôn tới "Kết thúc: Cập nhật & Theo dõi" sau khi duyệt, bỏ qua hoàn toàn giai đoạn khách hàng xem và ra quyết định mua hàng.
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-emerald-700">Bổ sung 3 Nhánh Quyết Định Khách Hàng:</b>
+                                        (1) Chốt hợp đồng (Won) &rarr; Xuất hóa đơn/Ký kết; (2) Đàm phán lại (Negotiation) &rarr; Điều chỉnh Báo giá V2; (3) Từ chối (Lost) &rarr; Ghi nhận lý do thất bại.
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">MỚI BỔ SUNG</span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/80">
+                                    <td class="p-3 text-center font-bold text-slate-900">Hậu Mãi</td>
+                                    <td class="p-3 font-bold text-slate-800">Chăm sóc & Giữ chân (Retention)</td>
+                                    <td class="p-3 text-slate-500">
+                                        Không có quy trình chăm sóc sau bán hàng, dễ mất khách doanh nghiệp vào tay đối thủ trong các đơn hàng mở rộng tiếp theo.
+                                    </td>
+                                    <td class="p-3 text-slate-800 font-medium">
+                                        <b class="text-indigo-700">Tự động nhắc lịch CSAT & Bảo trì định kỳ:</b> Nhắc lịch NVKD gọi thăm hỏi sau 48h nghiệm thu; cài đặt chu kỳ nhắc gia hạn dịch vụ bảo trì CNTT 6 tháng/12 tháng.
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">MỚI BỔ SUNG</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- SCRIPT ĐIỀU HÀNH B2B -->
+    <script>
+        const STANDARD_B2B_TEMPLATE = `Kính gửi: Bộ phận Bán hàng Doanh nghiệp - Minh An Technology
+Đơn vị gửi yêu cầu: Công ty TNHH Giải Pháp Công Nghệ Alpha
+Đại diện liên hệ: Ông Trần Văn Cường - Trưởng phòng CNTT
+Email: cuong.tran@alphatech.com.vn | SĐT: 0918.234.567
+Địa chỉ giao hàng & nghiệm thu: Tầng 6, Tòa nhà TechnoPark, Hà Nội
+
+Chúng tôi cần báo giá chính thức cho gói thiết bị và dịch vụ sau:
+1. 05 Laptop Dell Latitude 5520 i7 / 16GB RAM / 512GB SSD
+2. 01 Máy chủ Dell PowerEdge R740 (2x Intel Xeon Gold, 64GB RAM)
+3. 01 Switch Cisco Catalyst C9200L 24 Ports PoE+
+4. 01 Dịch vụ Cài đặt Mạng & Triển khai Hệ thống
+
+Khoảng ngân sách dự kiến: 180,000,000 VNĐ
+Thời hạn mong muốn nhận hàng: 7 ngày làm việc
+Đề xuất mức chiết khấu thương mại: 5%`;
+
+        const SCENARIOS_B2B = {
+            'invalid_format': {
+                text: "alo shop ơi cần mua ít đồ gửi báo giá gấp qua đây nhé",
+                hasItems: false,
+                hasBudget: false,
+                hasDeadline: false,
+                hasContact: false,
+                discount: 0,
+                isInvalidFormat: true
+            },
+            'incomplete': {
+                text: "Gửi công ty Minh An, bên anh cần hỏi mua máy chủ và một số laptop văn phòng. Báo giá lại cho anh nhé. Liên hệ: anh Hưng - 0912xxxxxx",
+                hasItems: false,
+                hasBudget: false,
+                hasDeadline: false,
+                hasContact: true,
+                discount: 0
+            },
+            'standard': {
+                text: "Kính gửi Minh An, Công ty Cổ phần VinaLogistics cần đặt hàng:\n- 10 chiếc Laptop Dell Latitude 5520 i7\n- 01 Dịch vụ Cài đặt Mạng văn phòng\nNgân sách phê duyệt: 250 triệu VNĐ. Yêu cầu bàn giao trong 10 ngày. Đề xuất chiết khấu 5% cho đơn hàng đầu tiên.\nNgười liên hệ: Anh Hùng (hung.it@vinalogistics.vn).",
+                hasItems: true,
+                hasBudget: true,
+                hasDeadline: true,
+                hasContact: true,
+                discount: 5,
+                items: [
+                    { name: "Laptop Dell Latitude 5520 i7/16GB/512GB", qty: 10, price: 22500000, inStock: true },
+                    { name: "Dịch vụ Triển khai Mạng văn phòng", qty: 1, price: 15000000, inStock: true }
+                ]
+            },
+            'override': {
+                text: "Kính gửi Phòng Kinh doanh Minh An,\nTổng Công ty Tài chính Viễn Đông mở chi nhánh trung tâm dữ liệu:\n- 03 chiếc Server Dell PowerEdge R740\n- 02 Switch Cisco Catalyst C9200L\n- 01 Gói Dịch vụ Bảo trì CNTT 1 năm trọn gói\nNgân sách: 400 triệu. Do hợp đồng khung chiến lược dài hạn, chúng tôi yêu cầu mức chiết khấu đặc biệt là 18%. Thời hạn cần 30 ngày.\nĐại diện: Chị Hoàng Yến - procurement@viendong.vn",
+                hasItems: true,
+                hasBudget: true,
+                hasDeadline: true,
+                hasContact: true,
+                discount: 18,
+                items: [
+                    { name: "Server Dell PowerEdge R740 2x Intel Xeon", qty: 3, price: 85000000, inStock: false },
+                    { name: "Switch Cisco Catalyst C9200L 24 Ports PoE+", qty: 2, price: 28000000, inStock: true },
+                    { name: "Dịch vụ Bảo trì CNTT Doanh nghiệp trọn gói 1 năm", qty: 1, price: 36000000, inStock: true }
+                ]
+            }
+        };
+
+        let currentB2BData = null;
+        let pipelineRecords = [];
+
+        // HÀM THẨM ĐỊNH ĐỊNH DẠNG YÊU CẦU ĐẦU VÀO
+        function validateB2BFormat(text) {
+            const trimmed = (text || "").trim();
+            const errors = [];
+
+            // 1. Kiểm tra độ dài tối thiểu
+            if (trimmed.length < 25) {
+                errors.push("Nội dung quá ngắn (tối thiểu 25 ký tự). Vui lòng cung cấp chi tiết nhu cầu doanh nghiệp.");
+            }
+
+            // 2. Kiểm tra thông tin liên hệ (Email hoặc SĐT hợp lệ)
+            const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+            const phoneRegex = /(0|\+84)[0-9]{9,10}/;
+            if (!emailRegex.test(trimmed) && !phoneRegex.test(trimmed)) {
+                errors.push("Thiếu thông tin liên hệ hợp lệ: Cần có Email công ty (vd: name@company.vn) hoặc Số điện thoại người liên hệ.");
+            }
+
+            // 3. Kiểm tra danh mục sản phẩm / dịch vụ
+            const knownKeywords = [
+                "dell", "laptop", "latitude", "server", "máy chủ", "r740", "switch", "cisco", 
+                "c9200", "cài đặt", "mạng", "bảo trì", "cntt", "thiết bị", "máy tính", "ram", "ssd"
+            ];
+            const hasKeyword = knownKeywords.some(kw => trimmed.toLowerCase().includes(kw));
+            if (!hasKeyword) {
+                errors.push("Thiếu danh mục sản phẩm/dịch vụ cụ thể: Yêu cầu cần nêu rõ các dòng máy, thiết bị mạng hoặc dịch vụ CNTT.");
+            }
+
+            // 4. Kiểm tra số lượng
+            const hasQuantity = /[0-9]+\s*(cái|chiếc|bộ|gói|server|máy|chiêc|chiec)/i.test(trimmed) || /\d+/.test(trimmed);
+            if (!hasQuantity) {
+                errors.push("Chưa rõ số lượng dự kiến từng mặt hàng cần chào giá.");
+            }
+
+            return {
+                isValid: errors.length === 0,
+                errors: errors
+            };
+        }
+
+        function dismissB2BFormatError() {
+            const errBox = document.getElementById('b2bFormatErrorAlert');
+            const textarea = document.getElementById('b2bRawInput');
+            errBox.classList.add('hidden');
+            textarea.className = "w-full text-xs font-mono p-3.5 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-lime-neon focus:outline-none bg-[#F9FAF6] transition-all";
+        }
+
+        function handleB2BIntakeInput(value) {
+            const errBox = document.getElementById('b2bFormatErrorAlert');
+            const textarea = document.getElementById('b2bRawInput');
+            const badge = document.getElementById('intakeFormatBadgeB2B');
+
+            if (!errBox.classList.contains('hidden')) {
+                const validation = validateB2BFormat(value);
+                if (validation.isValid) {
+                    errBox.classList.add('hidden');
+                    textarea.className = "w-full text-xs font-mono p-3.5 border-2 border-emerald-400 rounded-2xl focus:ring-2 focus:ring-lime-neon focus:outline-none bg-[#F9FAF6] transition-all";
+                    badge.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
+                    badge.innerText = "✓ Định dạng hợp lệ";
+                }
+            }
+        }
+
+        function loadStandardTemplateB2B() {
+            const textarea = document.getElementById('b2bRawInput');
+            textarea.value = STANDARD_B2B_TEMPLATE;
+            dismissB2BFormatError();
+            textarea.className = "w-full text-xs font-mono p-3.5 border-2 border-lime-neon rounded-2xl focus:ring-2 focus:ring-lime-neon focus:outline-none bg-lime-50/20 transition-all";
+            const badge = document.getElementById('intakeFormatBadgeB2B');
+            badge.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-lime-pastel text-slate-900 border border-lime-neon";
+            badge.innerText = "✓ Đã nạp mẫu chuẩn";
+            document.getElementById('chkItems').checked = true;
+            document.getElementById('chkContact').checked = true;
+            document.getElementById('chkBudget').checked = true;
+            document.getElementById('chkDeadline').checked = true;
+            currentB2BData = SCENARIOS_B2B['standard'];
+            executeB2BWorkflow();
+        }
+
+        function resetNodes() {
+            for (let i = 1; i <= 6; i++) {
+                const el = document.getElementById('node' + i);
+                el.className = "border-2 border-white/15 bg-white/5 rounded-2xl p-4 text-center transition-all duration-300";
+            }
+        }
+
+        function setNodeState(nodeId, state) {
+            const el = document.getElementById(nodeId);
+            if (state === 'active') el.className = "border-2 node-active rounded-2xl p-4 text-center transition-all duration-300";
+            else if (state === 'completed') el.className = "border-2 node-completed rounded-2xl p-4 text-center transition-all duration-300";
+            else if (state === 'warning') el.className = "border-2 node-warning rounded-2xl p-4 text-center transition-all duration-300";
+            else if (state === 'danger') el.className = "border-2 node-danger rounded-2xl p-4 text-center transition-all duration-300";
+        }
+
+        function pickB2BScenario(type) {
+            const sc = SCENARIOS_B2B[type];
+            document.getElementById('b2bRawInput').value = sc.text;
+            document.getElementById('chkItems').checked = sc.hasItems;
+            document.getElementById('chkContact').checked = sc.hasContact;
+            document.getElementById('chkBudget').checked = sc.hasBudget;
+            document.getElementById('chkDeadline').checked = sc.hasDeadline;
+            currentB2BData = sc;
+            executeB2BWorkflow();
+        }
+
+        function executeB2BWorkflow() {
+            resetNodes();
+            const rawText = document.getElementById('b2bRawInput').value;
+            const errBox = document.getElementById('b2bFormatErrorAlert');
+            const errList = document.getElementById('b2bFormatErrorList');
+            const textarea = document.getElementById('b2bRawInput');
+            const badge = document.getElementById('intakeFormatBadgeB2B');
+
+            // 1. KIỂM TRA ĐỊNH DẠNG ĐẦU VÀO (INTAKE FORMAT VALIDATION GATE)
+            const validation = validateB2BFormat(rawText);
+
+            if (!validation.isValid) {
+                // BƯỚC 1 BỊ LỖI -> ĐỎ NODE 1 VÀ DỪNG QUY TRÌNH
+                setNodeState('node1', 'danger');
+                badge.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-800 border border-red-300";
+                badge.innerText = "✕ Không đúng định dạng";
+
+                textarea.className = "w-full text-xs font-mono p-3.5 border-2 border-red-500 rounded-2xl focus:ring-2 focus:ring-red-400 focus:outline-none bg-red-50/30 transition-all";
+
+                errList.innerHTML = validation.errors.map(err => `<li>${err}</li>`).join('');
+                errBox.classList.remove('hidden');
+
+                // Ẩn toàn bộ kết quả phân loại phía sau
+                document.getElementById('stepInfoCheck').classList.add('hidden');
+                return;
+            }
+
+            // NẾU HỢP LỆ ĐỊNH DẠNG:
+            errBox.classList.add('hidden');
+            textarea.className = "w-full text-xs font-mono p-3.5 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-lime-neon focus:outline-none bg-[#F9FAF6] transition-all";
+            badge.className = "text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
+            badge.innerText = "✓ Định dạng hợp lệ";
+
+            setNodeState('node1', 'completed');
+            setNodeState('node2', 'completed');
+
+            document.getElementById('stepInfoCheck').classList.remove('hidden');
+
+            const isItems = document.getElementById('chkItems').checked;
+            const isBudget = document.getElementById('chkBudget').checked;
+            const isDeadline = document.getElementById('chkDeadline').checked;
+            const isContact = document.getElementById('chkContact').checked;
+
+            const isSufficient = isItems && isBudget && isDeadline && isContact;
+
+            const badge = document.getElementById('badgeInfoSufficient');
+            const boxIncomplete = document.getElementById('boxIncompleteFlow');
+            const boxComplete = document.getElementById('boxCompleteFlow');
+
+            if (!isSufficient) {
+                setNodeState('node3', 'warning');
+                document.getElementById('node3Sub').innerText = "Thiếu thông tin (Rẽ nhánh)";
+                badge.className = "text-xs px-3 py-1 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-300";
+                badge.innerText = "CHƯA ĐỦ THÔNG TIN";
+
+                boxIncomplete.classList.remove('hidden');
+                boxComplete.classList.add('hidden');
+
+                document.getElementById('emailClarifyDraft').value = `Kính gửi Quý khách,
+
+Cảm ơn Quý khách đã gửi yêu cầu tới Minh An Company.
+
+Để đội ngũ kỹ thuật và kinh doanh thẩm định cấu hình chính xác và xây dựng bảng dự toán tối ưu, Minh An xin phép nhờ Quý khách xác nhận thêm:
+- Danh mục chi tiết các dòng máy/cấu hình mong muốn và số lượng cụ thể từng loại.
+- Khoảng ngân sách dự kiến của doanh nghiệp.
+- Thời hạn dự kiến cần nhận hàng và địa điểm triển khai lắp đặt.
+
+Ngay khi nhận phản hồi, Minh An sẽ lập tức chuyển Vận hành kiểm kho và phát hành Báo giá chính thức.
+
+Trân trọng,
+Bộ phận Hỗ trợ Khách hàng Doanh nghiệp - Minh An Company`;
+
+            } else {
+                setNodeState('node3', 'completed');
+                document.getElementById('node3Sub').innerText = "Đủ điều kiện tiếp nhận";
+                badge.className = "text-xs px-3 py-1 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+                badge.innerText = "ĐỦ THÔNG TIN (HỢP LỆ)";
+
+                boxIncomplete.classList.add('hidden');
+                boxComplete.classList.remove('hidden');
+
+                setNodeState('node4', 'completed');
+                setNodeState('node5', 'active');
+
+                setupQualifiedDeal();
+            }
+        }
+
+        function simulateCustomerReply() {
+            alert("Khách hàng đã gửi email phản hồi bổ sung đầy đủ: 10 Laptop Dell, ngân sách 250 triệu, hạn giao 10 ngày!");
+            pickB2BScenario('standard');
+        }
+
+        function setupQualifiedDeal() {
+            const sc = currentB2BData;
+            const items = sc.items || [
+                { name: "Thiết bị Công nghệ Chuẩn hóa", qty: 2, price: 25000000, inStock: true }
+            ];
+
+            let custName = "Công ty CP VinaLogistics";
+            if (sc.discount > 10) custName = "Tổng Công ty Tài chính Viễn Đông";
+
+            document.getElementById('oppCustomerName').innerText = custName;
+            document.getElementById('oppAssignedRep').innerText = "Nguyễn Văn Nam (Chuyên viên B2B)";
+
+            let totalList = 0;
+            const tbody = document.getElementById('b2bItemsTable');
+            tbody.innerHTML = '';
+
+            items.forEach(it => {
+                const sub = it.price * it.qty;
+                totalList += sub;
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-2.5 font-bold text-slate-800">${it.name}</td>
+                        <td class="p-2.5 text-center font-bold text-slate-700">${it.qty}</td>
+                        <td class="p-2.5 text-right font-medium text-slate-600">${it.price.toLocaleString()} đ</td>
+                        <td class="p-2.5 text-right font-bold text-slate-900">${sub.toLocaleString()} đ</td>
+                        <td class="p-2.5 text-center">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${it.inStock ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                                ${it.inStock ? 'Sẵn kho (2 ngày)' : 'Điều phối (14 ngày)'}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            const discountRate = sc.discount || 0;
+            const finalVal = totalList * (1 - discountRate / 100);
+
+            document.getElementById('oppDiscountText').innerText = `${discountRate}%`;
+            document.getElementById('oppTotalValue').innerText = finalVal.toLocaleString() + " VNĐ";
+
+            const managerBox = document.getElementById('b2bManagerApprovalBox');
+            const btnFinish = document.getElementById('btnFinishB2B');
+
+            if (discountRate > 10) {
+                managerBox.classList.remove('hidden');
+                document.getElementById('spanSpecialDiscount').innerText = `${discountRate}%`;
+                document.getElementById('oppApprovalHint').innerText = "Cần Trưởng phòng duyệt (> 10%)";
+                btnFinish.disabled = true;
+                btnFinish.classList.add('opacity-40', 'cursor-not-allowed');
+                setNodeState('node5', 'warning');
+            } else {
+                managerBox.classList.add('hidden');
+                document.getElementById('oppApprovalHint').innerText = "Đúng thẩm quyền (Tự động duyệt)";
+                btnFinish.disabled = false;
+                btnFinish.classList.remove('opacity-40', 'cursor-not-allowed');
+                setNodeState('node5', 'completed');
+            }
+        }
+
+        function managerDecideB2B(approved) {
+            const managerBox = document.getElementById('b2bManagerApprovalBox');
+            const btnFinish = document.getElementById('btnFinishB2B');
+
+            if (approved) {
+                managerBox.className = "p-4 bg-emerald-50 border border-emerald-200 rounded-2xl space-y-1 text-xs font-bold text-emerald-900";
+                managerBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> TRƯỞNG PHÒNG ĐÃ DUYỆT CHIẾT KHẤU ĐẶC BIỆT ${currentB2BData.discount}%!`;
+                btnFinish.disabled = false;
+                btnFinish.classList.remove('opacity-40', 'cursor-not-allowed');
+                setNodeState('node5', 'completed');
+            } else {
+                managerBox.className = "p-4 bg-red-50 border border-red-200 rounded-2xl space-y-1 text-xs font-bold text-red-900";
+                managerBox.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1.5"></i> TRƯỞNG PHÒNG TỪ CHỐI MỨC CHIẾT KHẤU ĐẶC BIỆT!`;
+                btnFinish.disabled = true;
+                btnFinish.classList.add('opacity-40', 'cursor-not-allowed');
+                setNodeState('node5', 'danger');
+            }
+        }
+
+        function finishAndTrackB2B() {
+            setNodeState('node6', 'completed');
+
+            const custName = document.getElementById('oppCustomerName').innerText;
+            const rep = document.getElementById('oppAssignedRep').innerText;
+            const val = document.getElementById('oppTotalValue').innerText;
+            const oppCode = "OPP-" + Math.floor(1000 + Math.random() * 9000);
+
+            pipelineRecords.unshift({
+                code: oppCode,
+                customer: custName,
+                rep: rep,
+                value: val,
+                stage: "Báo giá đã phát hành",
+                nextFollowUp: "Gọi chăm sóc sau 48h (Tự động nhắc lịch)"
+            });
+
+            renderPipeline();
+            alert(`QUY TRÌNH HOÀN TẤT!\nĐã cập nhật Hồ sơ cơ hội ${oppCode} vào hệ thống CRM của Minh An Company.`);
+        }
+
+        function renderPipeline() {
+            const tbody = document.getElementById('b2bPipelineTable');
+            tbody.innerHTML = pipelineRecords.map(r => `
+                <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 font-mono font-bold text-slate-900">${r.code}</td>
+                    <td class="p-2.5 font-bold text-slate-800">${r.customer}</td>
+                    <td class="p-2.5 text-slate-600">${r.rep}</td>
+                    <td class="p-2.5 text-right font-extrabold text-slate-900">${r.value}</td>
+                    <td class="p-2.5 text-center">
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#EAF8A9] text-slate-900 border border-lime-neon">
+                            ${r.stage}
+                        </span>
+                    </td>
+                    <td class="p-2.5 text-center text-slate-600 text-[11px]">
+                        <i class="fa-regular fa-calendar-check text-emerald-600 mr-1"></i> ${r.nextFollowUp}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // KHỞI CHẠY MẶC ĐỊNH
+        pickB2BScenario('incomplete');
+    </script>
+</body>
+</html>

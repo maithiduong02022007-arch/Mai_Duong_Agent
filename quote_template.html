@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Báo Giá Thiết Bị & Dịch Vụ Công Nghệ - Công Ty Minh An</title>
+    <style>
+        body { font-family: 'Times New Roman', serif; margin: 40px; color: #333; line-height: 1.5; }
+        .header { display: flex; justify-content: space-between; border-bottom: 2px solid #0056b3; padding-bottom: 15px; }
+        .company-info h2 { margin: 0; color: #0056b3; }
+        .quote-title { text-align: center; margin-top: 30px; text-transform: uppercase; color: #0056b3; }
+        .info-box { margin-top: 20px; width: 100%; border-collapse: collapse; }
+        .info-box td { padding: 6px 10px; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        .data-table th, .data-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .data-table th { background-color: #f2f7fc; color: #0056b3; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .total-box { margin-top: 20px; float: right; width: 45%; }
+        .total-box table { width: 100%; border-collapse: collapse; }
+        .total-box td { padding: 6px; }
+        .terms { clear: both; margin-top: 60px; padding-top: 20px; border-top: 1px dashed #ccc; font-size: 13px; }
+        .signatures { margin-top: 40px; display: flex; justify-content: space-between; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="company-info">
+            <h2>CÔNG TY CỔ PHẦN CÔNG NGHỆ MINH AN</h2>
+            <p>Địa chỉ: Tầng 6, Tòa nhà Công Nghệ, Hà Nội<br>
+            Hotline: 1900 xxxx - Email: contact@minhan.com.vn</p>
+        </div>
+        <div class="quote-meta text-right">
+            <p><b>Số Báo Giá:</b> {{MA_BAO_GIA}}<br>
+            <b>Ngày tạo:</b> {{NGAY_TAO}}<br>
+            <b>Hiệu lực:</b> 15 ngày kể từ ngày lập</p>
+        </div>
+    </div>
+
+    <h2 class="quote-title">BẢNG BÁO GIÁ THIẾT BỊ VÀ DỊCH VỤ</h2>
+
+    <table class="info-box">
+        <tr>
+            <td width="15%"><b>Kính gửi:</b></td>
+            <td width="45%"><b>{{TEN_KHACH_HANG}}</b></td>
+            <td width="20%"><b>Người đại diện:</b></td>
+            <td width="20%">{{NGUOI_LIEN_HE}}</td>
+        </tr>
+        <tr>
+            <td><b>Email/SĐT:</b></td>
+            <td>{{THONG_TIN_LIEN_HE}}</td>
+            <td><b>NVKD phụ trách:</b></td>
+            <td>{{TEN_NVKD}} ({{SDT_NVKD}})</td>
+        </tr>
+    </table>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th class="text-center" width="5%">STT</th>
+                <th width="15%">Mã SP</th>
+                <th width="35%">Tên Hạng Mục / Cấu Hình</th>
+                <th class="text-center" width="8%">ĐVT</th>
+                <th class="text-center" width="8%">Số Lượng</th>
+                <th class="text-right" width="14%">Đơn Giá (VNĐ)</th>
+                <th class="text-right" width="15%">Thành Tiền (VNĐ)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{HANG_MUC_CHI_TIET}}
+        </tbody>
+    </table>
+
+    <div class="total-box">
+        <table>
+            <tr>
+                <td><b>Tổng tiền niêm yết:</b></td>
+                <td class="text-right">{{TONG_TIEN_CHUAN}} VNĐ</td>
+            </tr>
+            <tr>
+                <td><b>Chiết khấu thương mại ({{TY_LE_CK}}%):</b></td>
+                <td class="text-right" style="color: red;">- {{TIEN_CHIET_KHAU}} VNĐ</td>
+            </tr>
+            <tr>
+                <td><b>Tổng giá trị trước thuế:</b></td>
+                <td class="text-right"><b>{{THANH_TIEN_TRUOC_THUE}} VNĐ</b></td>
+            </tr>
+            <tr>
+                <td><b>Thuế GTGT (VAT 10%):</b></td>
+                <td class="text-right">{{TIEN_VAT}} VNĐ</td>
+            </tr>
+            <tr style="border-top: 2px solid #0056b3; font-size: 16px;">
+                <td><b>TỔNG CỘNG THANH TOÁN:</b></td>
+                <td class="text-right" style="color: #0056b3;"><b>{{TONG_CONG_THANH_TOAN}} VNĐ</b></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="terms">
+        <p><b>ĐIỀU KHOẢN THƯƠNG MẠI & CAM KẾT VẬN HÀNH:</b></p>
+        <ul>
+            <li><b>Thời gian giao hàng & triển khai:</b> Cam kết trong vòng <b>{{THOI_GIAN_TRIEN_KHAI}} ngày làm việc</b> kể từ khi ký kết hợp đồng.</li>
+            <li><b>Bảo hành:</b> Thiết bị bảo hành chính hãng theo tiêu chuẩn nhà sản xuất; dịch vụ hỗ trợ kỹ thuật 24/7 trong 12 tháng.</li>
+            <li><b>Phương thức thanh toán:</b> Tạm ứng 30% khi ký HĐ, 70% sau khi bàn giao nghiệm thu đầy đủ hóa đơn chứng từ.</li>
+        </ul>
+    </div>
+
+    <div class="signatures">
+        <div style="width: 45%;">
+            <b>ĐẠI DIỆN KHÁCH HÀNG</b><br>
+            <i>(Ký và ghi rõ họ tên)</i>
+        </div>
+        <div style="width: 45%;">
+            <b>CÔNG TY CỔ PHẦN CÔNG NGHỆ MINH AN</b><br>
+            <i>(Trưởng phòng Kinh doanh / Đại diện ủy quyền)</i>
+        </div>
+    </div>
+
+</body>
+</html>
+
